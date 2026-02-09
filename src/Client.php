@@ -1,7 +1,7 @@
 <?php
 
 /*
- * WebDevPack SDK for PHP
+ * WEBDEVPACK SDK for PHP
  * https://github.com/webdevpack/webdevpack-sdk-php
  * Copyright (c) Amplilabs Ltd.
  * Free to use under the MIT license.
@@ -10,7 +10,7 @@
 namespace WebDevPack;
 
 /**
- * WebDevPack SDK for PHP
+ * WEBDEVPACK SDK for PHP
  */
 class Client
 {
