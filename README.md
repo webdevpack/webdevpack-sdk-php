@@ -5,7 +5,7 @@ WEBDEVPACK SDK for PHP provides a simple, expressive way to integrate WEBDEVPACK
 ## Install via Composer
 
 ```shell
-composer require webdevpack/sdk-php
+composer require webdevpack/webdevpack-sdk-php
 ```
 
 ## Examples
@@ -69,4 +69,4 @@ $wdp->convertHTMLFileToPDF($sourceFilename, $targetFilename);
 ```
 
 ## License
-This project is licensed under the MIT License. See the [license file](https://github.com/webdevpack/sdk-php/blob/master/LICENSE) for more information.
+This project is licensed under the MIT License. See the [license file](https://github.com/webdevpack/webdevpack-sdk-php/blob/master/LICENSE) for more information.
