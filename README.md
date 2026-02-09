@@ -68,5 +68,9 @@ $wdp->convertHTMLToPDF($source, $targetFilename);
 $wdp->convertHTMLFileToPDF($sourceFilename, $targetFilename);
 ```
 
+## Requirements
+- PHP 8.4+
+- Composer
+
 ## License
 This project is licensed under the MIT License. See the [license file](https://github.com/webdevpack/webdevpack-sdk-php/blob/master/LICENSE) for more information.
