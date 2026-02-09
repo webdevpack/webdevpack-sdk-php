@@ -11,6 +11,8 @@ composer require webdevpack/sdk-php
 ## Examples
 
 ```php
+require __DIR__ . '/vendor/autoload.php';
+
 $wdp = new WebDevPack\Client(['apiKey' => 'YOUR-API-KEY']);
 
 // IMAGES
