@@ -51,6 +51,9 @@ $wdp->minifyCSSFile($sourceFilename, $targetFilename);
 // Get domain WHOIS information
 $result = $wdp->domainWhois($domain);
 
+// Take website screenshot
+$wdp->takeWebsiteScreenshot('https://google.com/', 1024, 768, 1, 'jpg', $targetFilename);
+
 // SECURITY
 
 // Generate password
