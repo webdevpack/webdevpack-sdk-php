@@ -155,7 +155,11 @@ class Client
                 throw new \Exception('The target file (' . $targetFilename . ') is not writable!');
             }
         } else {
-            if (!is_writable(pathinfo($targetFilename, PATHINFO_DIRNAME))) {
+            $parentDir = pathinfo($targetFilename, PATHINFO_DIRNAME);
+            while (!is_dir($parentDir)) {
+                $parentDir = dirname($parentDir);
+            }
+            if (!is_writable($parentDir)) {
                 throw new \Exception('The target file (' . $targetFilename . ') is not writable!');
             }
         }
@@ -476,6 +480,30 @@ class Client
         $this->checkTargetFilename($targetFilename);
         $fileID = $this->uploadFile($sourceFilename);
         $response = $this->sendRequest('/v0/html-file-to-pdf', ['file' => $fileID]);
+        $this->downloadFile($response['result']['file'], $targetFilename);
+    }
+
+
+    /**
+     * 
+     * @param string $url
+     * @param integer $width
+     * @param string|integer $height
+     * @param float $scale
+     * @param string $format
+     * @param string $targetFilename
+     * @return void
+     */
+    public function takeWebsiteScreenshot(string $url, int $width, string|int $height, float $scale, string $format, string $targetFilename): void
+    {
+        $this->checkTargetFilename($targetFilename);
+        $response = $this->sendRequest('/v0/website-screenshot', [
+            'url' => $url,
+            'width' => $width,
+            'height' => $height,
+            'scale' => $scale,
+            'format' => $format
+        ]);
         $this->downloadFile($response['result']['file'], $targetFilename);
     }
 }
