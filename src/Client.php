@@ -168,50 +168,6 @@ class Client
     /**
      * 
      * @param string $text
-     * @param string $transform Available values: uppercase and lowercase.
-     * @return string
-     */
-    public function transformText(string $text, string $transform): string
-    {
-        $response = $this->sendRequest('/v0/text-transform', ['text' => $text, 'transform' => $transform]);
-        return $response['result']['text'];
-    }
-
-    /**
-     * 
-     * @param string $text
-     * @param string $transform
-     * @return string
-     */
-    private function base64EncodeDecode(string $text, string $transform): string
-    {
-        $response = $this->sendRequest('/v0/base64-encode-decode', ['text' => $text, 'transform' => $transform]);
-        return $response['result']['text'];
-    }
-
-    /**
-     * 
-     * @param string $text
-     * @return string
-     */
-    public function base64Encode(string $text): string
-    {
-        return $this->base64EncodeDecode($text, 'encode');
-    }
-
-    /**
-     * 
-     * @param string $text
-     * @return string
-     */
-    public function base64Decode(string $text): string
-    {
-        return $this->base64EncodeDecode($text, 'decode');
-    }
-
-    /**
-     * 
-     * @param string $text
      * @param string $algorithm Available values: md5, crc32, sha-1, sha-256, sha-512, sha3-256 and sha3-512
      * @return string
      */
@@ -219,38 +175,6 @@ class Client
     {
         $response = $this->sendRequest('/v0/text-hash', ['text' => $text, 'algorithm' => $algorithm]);
         return $response['result']['text'];
-    }
-
-    /**
-     * 
-     * @param string $url
-     * @param string $transform
-     * @return string
-     */
-    private function encodeDecodeURL(string $url, string $transform): string
-    {
-        $response = $this->sendRequest('/v0/url-encode-decode', ['text' => $url, 'transform' => $transform]);
-        return $response['result']['text'];
-    }
-
-    /**
-     * 
-     * @param string $url
-     * @return string
-     */
-    public function encodeURL(string $url): string
-    {
-        return $this->encodeDecodeURL($url, 'encode');
-    }
-
-    /**
-     * 
-     * @param string $url
-     * @return string
-     */
-    public function decodeURL(string $url): string
-    {
-        return $this->encodeDecodeURL($url, 'decode');
     }
 
     /**
@@ -392,39 +316,6 @@ class Client
         $fileID = $this->uploadFile($sourceFilename);
         $response = $this->sendRequest('/v0/css-minify-file', ['file' => $fileID]);
         $this->downloadFile($response['result']['file'], $targetFilename);
-    }
-
-
-    /**
-     * 
-     * @param string $text
-     * @param string $transform
-     * @return string
-     */
-    private function encodeDecodeJSON(string $text, string $transform): string
-    {
-        $response = $this->sendRequest('/v0/json-encode-decode', ['text' => $text, 'transform' => $transform]);
-        return $response['result']['text'];
-    }
-
-    /**
-     * 
-     * @param string $text
-     * @return string
-     */
-    public function encodeJSON(string $text): string
-    {
-        return $this->encodeDecodeJSON($text, 'encode');
-    }
-
-    /**
-     * 
-     * @param string $text
-     * @return string
-     */
-    public function decodeJSON(string $text): string
-    {
-        return $this->encodeDecodeJSON($text, 'decode');
     }
 
     /**
