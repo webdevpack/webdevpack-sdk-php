@@ -397,4 +397,22 @@ class Client
         ]);
         $this->downloadFile($response['result']['file'], $targetFilename);
     }
+
+    
+    /**
+     * 
+     * @param string $sourceFilename
+     * @param string $targetFilename
+     * @param string $format
+     * @param integer $quality
+     * @return void
+     */
+    public function convertSpreadsheet(string $sourceFilename, string $targetFilename, string $format): void
+    {
+        $this->checkSourceFilename($sourceFilename);
+        $this->checkTargetFilename($targetFilename);
+        $fileID = $this->uploadFile($sourceFilename);
+        $response = $this->sendRequest('/v0/spreadsheet-convert', ['file' => $fileID, 'format' => $format]);
+        $this->downloadFile($response['result']['file'], $targetFilename);
+    }
 }

@@ -69,6 +69,9 @@ $wdp->convertHTMLToPDF($source, $targetFilename);
 
 // Convert HTML file to PDF
 $wdp->convertHTMLFileToPDF($sourceFilename, $targetFilename);
+
+// Convert spreadsheets
+$wdp->convertSpreadsheet($sourceFilename, $targetFilename, 'xls');
 ```
 
 ## Requirements
