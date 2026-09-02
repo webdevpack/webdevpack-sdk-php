@@ -398,7 +398,7 @@ class Client
         $this->downloadFile($response['result']['file'], $targetFilename);
     }
 
-    
+
     /**
      * 
      * @param string $sourceFilename
@@ -414,5 +414,65 @@ class Client
         $fileID = $this->uploadFile($sourceFilename);
         $response = $this->sendRequest('/v0/spreadsheet-convert', ['file' => $fileID, 'format' => $format]);
         $this->downloadFile($response['result']['file'], $targetFilename);
+    }
+
+    /**
+     * 
+     * @param string $domain
+     * @return array
+     */
+    public function getDomainNameServers(string $domain): array
+    {
+        $response = $this->sendRequest('/v0/domain-nameservers', ['domain' => $domain]);
+        return $response['result']['nameservers'];
+    }
+
+    /**
+     * 
+     * @param string $domain
+     * @return array
+     */
+    public function getDomainDNSRecords(string $domain): array
+    {
+        $response = $this->sendRequest('/v0/domain-dns-records', ['domain' => $domain]);
+        return $response['result']['records'];
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getMyIP(): string
+    {
+        $response = $this->sendRequest('/v0/my-ip', []);
+        return $response['result']['ip'];
+    }
+
+    /**
+     * 
+     * @param string $number
+     * @return array
+     */
+    public function validateEUVATNumber(string $number): array
+    {
+        $response = $this->sendRequest('/v0/eu-vat-number-validate', ['number' => $number]);
+        return $response['result'];
+    }
+
+    /**
+     * 
+     * @param string $domain
+     * @param integer $days
+     * @param integer $bits
+     * @return array
+     */
+    public function generateSelfSignedCertificate(string $domain, int $days = 365, int $bits = 2048): array
+    {
+        $response = $this->sendRequest('/v0/self-signed-certificate', [
+            'domain' => $domain,
+            'days' => $days,
+            'bits' => $bits
+        ]);
+        return $response['result'];
     }
 }
