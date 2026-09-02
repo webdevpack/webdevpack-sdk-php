@@ -51,6 +51,12 @@ $wdp->minifyCSSFile($sourceFilename, $targetFilename);
 // Get domain WHOIS information
 $result = $wdp->domainWhois($domain);
 
+// Get domain name servers
+$nameServers = $wdp->getDomainNameServers($domain);
+
+// Get domain DNS records
+$dnsRecords = $wdp->getDomainDNSRecords($domain);
+
 // Take website screenshot
 $wdp->takeWebsiteScreenshot('https://google.com/', 1024, 768, 1, 'jpg', $targetFilename);
 
@@ -62,6 +68,9 @@ $result = $wdp->generatePassword($length, true, true, true);
 // Generate key pair
 $result = $wdp->generateKeyPair($bits);
 
+// Generate self-signed certificate
+$result = $wdp->generateSelfSignedCertificate($domain, $days, $bits);
+
 // DOCUMENTS
 
 // Convert HTML to PDF
@@ -72,6 +81,14 @@ $wdp->convertHTMLFileToPDF($sourceFilename, $targetFilename);
 
 // Convert spreadsheets
 $wdp->convertSpreadsheet($sourceFilename, $targetFilename, 'xls');
+
+// DATA
+
+// Get my IP address
+$ip = $wdp->getMyIP();
+
+// Validate EU VAT Number
+$result = $wdp->validateEUVATNumber($number);
 ```
 
 ## Requirements
